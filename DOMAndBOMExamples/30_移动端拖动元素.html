@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>移动端拖动元素</title>
+  <!-- 
+    1. touchstart：触摸屏幕
+    2. touchmove：手指滑动
+    3. touchend：结束触摸
+   -->
+   <style>
+     .box {
+       position: absolute;
+       left: 0;
+       top: 0;
+       width: 200px;
+       height: 200px;
+       background-color: cadetblue;
+     }
+   </style>
+</head>
+<body>
+  <div class="box">
+  </div>
+  <script>
+    const box = document.querySelector(".box");
+    let startX = 0;
+    let startY = 0;
+    // 获取盒子初始位置
+    let boxX = box.offsetLeft;
+    let boxY = box.offsetTop;
+    box.addEventListener("touch", function(e){
+      // 获取手指触摸初始的位置
+      startX = e.targetTouches[0].pageX;
+      startY = e.targetTouches[0].pageY;
+    })
+
+    box.addEventListener("touchmove", function(e){
+      // 手指移动距离 = 移动后的坐标 - 初始坐标
+      let moveX = e.targetTouches[0].pageX - startX;
+      let moveY = e.targetTouches[0].pageY - startY;
+      // 移动盒子
+      box.style.left = boxX + moveX + "px";
+      box.style.top = boxY + moveY + "px";
+
+      // 阻止屏幕默认的滚动行为
+      e.preventDefault();
+    })
+  </script>
+</body>
+</html>

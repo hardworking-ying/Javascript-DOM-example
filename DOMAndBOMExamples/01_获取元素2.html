@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取元素兼容性问题</title>
+</head>
+<body>
+  <!-- 
+    getElementsByClassName 是h5新增的方法，会有兼容性问题
+
+    封装一个适合新老浏览器的getElementsByClassName方法
+   -->
+  <script>
+    function getElementsByClassName(node, cName) {
+      if(node.getElementsByClassName) {
+        return node.getElementsByClassName(cName);
+      }else {
+        let results = new Array();
+        let eles = document.getElementsByTagName('*');
+        for(let i=0; i<eles.length; i++) {
+          if(eles[i].className.indexOf(cName) != -1) {
+            results[results.length] = elems[i];
+          }
+        }
+        return results;
+      }
+    }
+  </script>
+</body>
+</html>

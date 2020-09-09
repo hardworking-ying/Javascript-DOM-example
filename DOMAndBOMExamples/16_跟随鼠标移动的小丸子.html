@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跟随鼠标移动的小丸子</title>
+  <style>
+    img {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <!-- 
+    原理： 获取鼠标距离页面的水平和垂直距离pageX、pageY，赋值个图片的top、left
+   -->
+</head>
+<body>
+  <div>
+    <img src="img/avatar.jpg" alt="小丸子" id="img">
+  </div>
+
+  <script>
+    let img = document.getElementById('img');
+    document.addEventListener('mousemove', function(e) {
+      img.style.left = e.pageX - 50 + 'px';  // 减去图片大小的一半，使鼠标居于图片中心
+      img.style.top = e.pageY - 50 + 'px';
+    })
+  </script>
+</body>
+</html>

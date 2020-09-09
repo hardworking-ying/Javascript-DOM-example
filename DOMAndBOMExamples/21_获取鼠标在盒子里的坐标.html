@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取鼠标在盒子中的坐标</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: cadetblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+
+  <script>
+    const box = document.querySelector(".box");
+    let box_left = box.offsetLeft;
+    let box_top = box.offsetTop;
+    box.addEventListener("mousemove", function(e) {
+      let mouse_x = e.pageX;
+      let mouse_y = e.pageY;
+      let relative_left = mouse_x - box_left;
+      let relative_top = mouse_y - box_top;
+      console.log("鼠标在盒子中的x坐标是： " + relative_left + "， y坐标是： " + relative_top);
+    })
+  </script>
+</body>
+</html>

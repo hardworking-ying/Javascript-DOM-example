@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单全选与取消全选</title>
+  <style>
+    .wrapper {
+      margin-top: 100px;
+    }
+    table {
+      margin:0 auto;
+    }
+    table,th,td{
+      border: 1px solid #ddd;
+    }
+    thead>tr {
+      background-color: skyblue;
+    }
+    td {
+      width: 100px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table>
+      <thead>
+        <tr>
+          <td><input type="checkbox" name="all_select" id="all_select">全选</td>
+          <td>商品</td>
+          <td>单价</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" name="iPhone8" id="iPhone8" class="item_select"></td>
+          <td>iPhone8</td>
+          <td>8000</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="iPad_Pro" id="iPad_Pro" class="item_select"></td>
+          <td>iPad Pro</td>
+          <td>5000</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="iPad_Air" id="iPad_Air" class="item_select"></td>
+          <td>iPad Air</td>
+          <td>2000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const all_select = document.getElementById('all_select');
+    const selects = document.querySelectorAll('.item_select');
+
+    all_select.addEventListener('click',function(){
+      let state = all_select.checked;
+      selects.forEach(item => item.checked=state)
+    })
+
+    for(let i=0;i<selects.length;i++) {
+      selects[i].addEventListener('click', function(){
+        if(!selects[i].checked) {
+          all_select.checked = false;
+        }else{
+          let flag = true;
+          for(let j=0;j<selects.length;j++){
+            if(selects[j].checked==false){
+              flag = false;
+              break;
+            }
+          }
+          all_select.checked = flag;
+        }
+      })
+    }
+  </script>
+
+</body>
+</html>

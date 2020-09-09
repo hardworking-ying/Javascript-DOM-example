@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  font-size: 16px;
+  color: #666;
+  text-decoration: none;
+}
+ul, li {
+  list-style-type: none;
+}
+body {
+  background-color: #333;
+}
+.navigator {
+  position: relative;
+  width: 800px;
+  height: 42px;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+.nav_content {
+  position: absolute;
+}
+.nav_content li{
+  float: left;
+  width: 83px;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+}
+.nav_content li a:hover {
+  color: #fff;
+}
+.cloud {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  width: 83px;
+  height: 42px;
+  background: url('../img/cloud.gif') no-repeat;
+}
+
+p{
+  color: #fff;
+}

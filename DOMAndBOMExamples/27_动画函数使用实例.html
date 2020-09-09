@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画使用实例</title>
+  <style>
+    .tag {
+      position: fixed;
+      right: 0;
+      top: 200px;
+
+      width: 50px;
+      height: 50px;
+    }
+    .tag span {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      background-color: seagreen;
+      z-index: 9;
+    }
+    .feedback {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 160px;
+      height: 50px;
+      line-height: 50px;
+      padding-left: 20px;
+      background-color: seagreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="tag">
+    <span class="control"> ← </span>
+    <div class="feedback">问题反馈</div>
+  </div>
+
+  <script>
+    let control = document.querySelector(".control");
+    let feedback = document.querySelector(".feedback");
+    control.addEventListener("mouseenter", function(e){
+      let target = feedback.offsetWidth - control.offsetWidth;
+      animate(feedback, -target, 10, function(){
+        control.innerHTML = "→";
+      });
+    })
+    control.addEventListener("mouseleave", function(e){
+      animate(feedback, 0, 10, function(){
+        control.innerHTML = "←";
+      });
+    })
+
+    function animate(obj, target, interval=15, callback) {
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        if(obj.offsetLeft === target) {
+          clearInterval(obj.timer);
+          if(callback) {
+            callback();
+          }
+        }else {
+          let step = (target - obj.offsetLeft)/10;
+          // 正数向上取整，负数向下取整
+          step = step > 0 ? Math.ceil(step) : Math.floor(step);
+          obj.style.left = obj.offsetLeft + step + 'px';
+        }
+      }, interval)
+    }
+  </script>
+</body>
+</html>

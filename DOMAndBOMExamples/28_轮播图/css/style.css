@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ul, ol, li {
+  list-style-type: none;
+}
+a {
+  color: #ccc;
+  text-decoration: none;
+}
+.swiper_wrapper {
+  position: relative;
+  width: 721px;
+  height: 455px;
+
+  margin: 50px auto;
+  background-color: thistle;
+  overflow: hidden;
+}
+.swiper_main {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 600%;
+}
+.swiper_main li {
+  float: left;
+}
+.swiper_circle {
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+}
+.swiper_circle li {
+  float: left;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.current {
+  background-color: rgb(236, 144, 144);
+}
+.swiper_btn {
+  /* display: none; */
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 40px;
+  margin-top: -20px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+.btn_prev {
+  left: 0;
+}
+.btn_next {
+  right: 0;
+}
+

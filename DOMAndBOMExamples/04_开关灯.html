@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开关灯</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .light {
+      position: absolute;
+      top: 0;
+      left: 40%;
+    }
+  </style>
+</head>
+<body>
+  <div class="tip">tips:点击灯泡开灯/关灯</div>
+  <div class="light"><img src="img/灯.png" alt="" id="bulb"></div>
+  <script>
+    const bulb = document.getElementById('bulb');
+    const body = document.body;
+    let flag = true;
+    bulb.addEventListener('click',function() {
+      if(flag) {
+        body.style.backgroundColor = '#000';
+      }else {
+        body.style.backgroundColor = '#fff';
+      }
+      flag = !flag;
+    })
+  </script>
+</body>
+</html>

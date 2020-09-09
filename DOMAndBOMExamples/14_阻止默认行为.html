@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阻止默认行为</title>
+  <!-- 
+    e.preventDefault()     方法
+    e.returnValue （ie678） 属性
+    return false;  (无兼容性问题)
+   -->
+</head>
+<body>
+  <form action="baidu.com">
+    <input type="text" placeholder="账号">
+    <input type="text" placeholder="密码">
+    <input type="submit" value="提交" id="submit">
+  </form>
+  <script>
+    let submit = document.getElementById("submit");
+    submit.addEventListener('click', function(e) {
+      alert("阻止了默认行为！")
+      e.preventDefault();
+    })
+  </script>
+</body>
+</html>

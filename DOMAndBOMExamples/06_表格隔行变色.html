@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格隔行变色</title>
+  <style>
+    .wrapper {
+      width: 800px;
+      margin: 100px auto;
+    }
+    table,th,td{
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+    }
+    th,td {
+      text-align: center;
+    }
+    td {
+      padding: 5px;
+    }
+    .bg {
+      background-color: wheat;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table>
+      <caption>学生信息表</caption>
+      <thead>
+        <tr>
+          <td>序号</td>
+          <td>姓名</td>
+          <td>性别</td>
+          <td>出生日期</td>
+          <td>班级</td>
+          <td>手机号码</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>廖勇月</td>
+          <td>女</td>
+          <td>1999-01-01</td>
+          <td>高一三班</td>
+          <td>13622326412</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>廖凯斌</td>
+          <td>男</td>
+          <td>1999-08-04</td>
+          <td>高一三班</td>
+          <td>13456216412</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>徐惠南</td>
+          <td>女</td>
+          <td>2000-07-11</td>
+          <td>高一三班</td>
+          <td>15896128874</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>周深深</td>
+          <td>男</td>
+          <td>2000-12-31</td>
+          <td>高一三班</td>
+          <td>13228874454</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const trs = document.querySelectorAll('tbody > tr');
+    for(let i=0;i<trs.length;i++) {
+      // 鼠标经过事件：onmouseover
+      trs[i].addEventListener('mouseover', function(){
+        trs[i].className = 'bg';
+      })
+      // 鼠标移出事件：onmouseout
+      trs[i].addEventListener('mouseout', function(){
+        trs[i].className = ''
+      })
+    }
+  </script>
+</body>
+</html>

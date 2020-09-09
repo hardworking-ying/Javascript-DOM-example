@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5秒之后重定向页面</title>
+  <style>
+    #wrapper {
+      width: 300px;
+      margin: 200px auto;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <h3>404 Not Found</h3>
+    <p id="tips"></p>
+  </div>
+
+  <script>
+    const tip = document.getElementById("tips");
+    let time = 5;
+    function fn() {
+      if(time === 0) {
+        location.href = "https://www.baidu.com";
+      }else {
+        tip.innerHTML = time + 's之后将跳转到百度https://www.baidu.com';
+        time--;
+      }
+    }
+    fn();
+    setInterval(fn,1000)
+  </script>
+</body>
+</html>

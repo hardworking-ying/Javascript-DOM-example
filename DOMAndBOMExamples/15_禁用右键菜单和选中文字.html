@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>禁用右键菜单、禁止选中文字</title>
+</head>
+<body>
+  <div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae possimus laudantium incidunt architecto eaque minima debitis, in vel velit maiores non quasi excepturi rem, itaque praesentium aliquam at dolorum quidem.</p>
+    <h1>本页面禁止使用右键菜单，禁止选中文字</h1>
+  </div>
+  <script>
+    // 禁止右键菜单
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    })
+
+    // 禁止选中文字
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>倒计时</title>
+  <style>
+    .container {
+      position: relative;
+      z-index: 1;
+
+      width: 400px;
+      height: 300px;
+      margin: 100px auto;
+      background: url('https://t9.baidu.com/it/u=1307125826,3433407105&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1596006358&t=b69891ef9dbeaed883aed12529a1041e') repeat;
+      background-size: 100% 100%; 
+    }
+    .container:after {
+      content: '';
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+
+      width: 100%;
+      height: 100%;
+      background: inherit;     
+      filter: blur(10px);
+    }
+    .word {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      z-index: 3;
+
+      width: 100%;
+      height: 100%;
+
+      color: rgb(248, 247, 247);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 26px;
+      font-weight: bold;
+      text-shadow: 2px 2px 6px rgb(37, 37, 37);
+      text-align: center;
+      line-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="word"></p>
+  </div>
+  <script>
+    let container = document.querySelector('.container');
+    let word = container.querySelector('.word');
+    function countDown(time) {
+      let future = + new Date( time );
+      let now = + new Date();
+      let times = (future - now) / 1000;
+      if(times < 0) {
+        word.innerHTML = 'Happy New Year！';
+        return;
+      } 
+      let date =  parseInt( times / 60 / 60 /24 );
+      let hours = parseInt( times / 60 / 60 % 24 );
+      let mins = parseInt( times / 60 % 60 );
+      let secs = parseInt( times % 60 );
+      date = date > 9 ? date : '0' + date;
+      hours = hours > 9 ? hours : '0' + hours;
+      mins = mins > 9 ? mins : '0' + mins;
+      secs = secs > 9 ? secs : '0' + secs;
+      word.innerHTML = hours + ' : ' + mins + ' : ' + secs;
+      return;
+    }
+    let a = setInterval(() => {
+      countDown('2020/07/22 16:18:00');
+    }, 1000);
+    
+  </script>
+</body>
+</html>

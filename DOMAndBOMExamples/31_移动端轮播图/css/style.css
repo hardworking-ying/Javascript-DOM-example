@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul, ol, li {
+  list-style-type: none;
+}
+.swiper_wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.swiper_main {
+  width: 500%;
+  margin-left: -100%;
+  overflow: hidden;
+}
+.swiper_main li {
+  float: left;
+  width: 20%;
+}
+.swiper_main img {
+  width: 100%;
+}
+.swiper_circle {
+  position: absolute;
+  right: 5px;
+  bottom: 8px;
+}
+.swiper_circle li {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 40%;
+  background-color: #fff;
+}
+.swiper_circle li.current{
+  width: 15px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态创建元素的三种方法的区别</title>
+  <!-- 
+    1. document.write         : 直接将内容写入页面的内容流，但是文档流执行完毕，它会导致页面全部重绘
+    2. element.innerHTML      ：将内容全部写入一个DOM节点，不会导致页面全部重绘
+    3. document.createElement
+
+    innerHTML 与 createElement效率对比（创建多个元素时）：
+    1. innerHTML 使用字符串拼接时，效率很低。使用数组形式拼接（先push进数组，再使用join连接成字符串）效率高很多
+    4. innerHTML创建多个元素效率更高，结构稍复杂； createElement创建多个元素效率低一点点，结构清晰
+   -->
+</head>
+<body>
+  <div id="wrapper1"></div>
+  <div id="wrapper2"></div>
+  <div id="wrapper3"></div>
+
+  <script>
+    const wrap1 = document.getElementById("wrapper1");
+    const wrap2 = document.getElementById("wrapper2");
+    const wrap3 = document.getElementById("wrapper3")
+
+    console.log("----------------innerHTML + 字符串拼接 创建100个超链接用时--------------------------------");
+    const start1 = + new Date();
+    for(let i=0; i<100; i++) {
+      wrap1.innerHTML += "<a href='#'>innerHTML+字符串拼接</a>";
+    }
+    const end1 = + new Date();
+    console.log(end1 - start1);
+
+    console.log("----------------innerHTML + 数组拼接 创建100个超链接用时--------------------------------");
+    const start2 = + new Date();
+    const arr = [];
+    for(let i=0; i<100; i++) {
+      arr.push("<a href='#'>innerHTML+数组拼接</a>");
+    }
+    wrap2.innerHTML = arr.join('');
+    const end2 = + new Date();
+    console.log(end2 - start2);
+
+    console.log("----------------createElement 创建100个超链接用时--------------------------------");
+    const start3 = + new Date();
+    for(let i=0; i<100; i++) {
+      let a = document.createElement("a");
+      let a_txt = document.createTextNode("createElement");
+      a.appendChild(a_txt);
+      wrap3.appendChild(a);
+    }
+    const end3 = + new Date();
+    console.log(end3 - start3);
+  </script>
+</body>
+</html>

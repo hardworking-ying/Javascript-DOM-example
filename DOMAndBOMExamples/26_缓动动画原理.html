@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>缓动动画</title>
+  <style>
+    .box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 200px;
+      background-color: salmon;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <!-- 
+    匀速动画 ： 每次移动固定距离
+    缓速动画 ： 每次移动的距离是变化的
+   -->
+  <script>
+    let box = document.querySelector(".box");
+    function animate(obj, target, interval=15) {
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        if(obj.offsetLeft === target) {
+          clearInterval(obj.timer)
+        }else {
+          let step = (target - obj.offsetLeft)/10;
+          // 正数向上取整，负数向下取整
+          step = step > 0 ? Math.ceil(step) : Math.floor(step);
+          obj.style.left = obj.offsetLeft + step + 'px';
+        }
+      }, interval)
+    }
+    animate(box, 800)
+    setTimeout(function(){
+      animate(box, 200)
+    }, 3000)
+  </script>
+</body>
+</html>

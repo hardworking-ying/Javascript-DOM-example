@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仿淘宝固定侧边栏</title>
+  <style>
+    .header,
+    .banner,
+    .main,
+    .footer {
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .header {
+      height: 120px;
+      background-color: blueviolet;
+    }
+
+    .banner {
+      height: 400px;
+      background-color: cadetblue;
+    }
+
+    .main {
+      height: 1200px;
+      background-color: cornflowerblue;
+    }
+
+    .footer {
+      height: 80px;
+      background-color: darkgray;
+    }
+
+    .aside {
+      position: absolute;
+      right: 30px;
+      top: 350px;
+      width: 50px;
+      height: 60px;
+      background-color: pink;
+      text-align: center;
+    }
+
+    .goback {
+      display: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">header</div>
+  <div class="banner">banner</div>
+  <div class="main">main</div>
+  <div class="footer">footer</div>
+  <div class="aside"><span class="goback">回到顶部</span></div>
+
+  <script>
+    const banner = document.querySelector(".banner");
+    const main = document.querySelector(".main");
+    const aside = document.querySelector(".aside");
+    const goback = document.querySelector(".goback");
+
+    let bannerTop = banner.offsetTop;
+    let mainTop = main.offsetTop;
+    let asideTop = aside.offsetTop;
+
+    // 滚动到banner时，aside固定在页面中
+    document.addEventListener("scroll", function (e) {
+      if (window.pageYOffset >= bannerTop) {
+        aside.style.position = "fixed";
+        aside.style.top = asideTop - bannerTop + 'px';
+      } else {
+        aside.style.position = "absolute";
+        aside.style.top = asideTop + 'px';
+      }
+      // 滚动到main时，显示返回顶部
+      if (window.pageYOffset >= mainTop) {
+        goback.style.display = "inline";
+      } else {
+        goback.style.display = "none";
+      }
+    })
+    // 返回顶部
+    goback.addEventListener("click", function (e) {
+      // window.scrollTo(0, 0);
+      animate(window, 0); // 动画效果
+    })
+
+    function animate(obj, target, interval = 15, callback) {
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function () {
+        if (window.pageYOffset === target) {
+          clearInterval(obj.timer);
+          // 回调函数
+          callback && callback(); 
+        } else {
+          let step = (target - window.pageYOffset) / 10;
+          // 正数向上取整，负数向下取整
+          step = step > 0 ? Math.ceil(step) : Math.floor(step);
+          window.scroll(0, window.pageYOffset + step);
+        }
+      }, interval)
+    }
+  </script>
+</body>
+
+</html>

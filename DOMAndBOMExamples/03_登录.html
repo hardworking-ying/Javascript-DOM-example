@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .login {
+      width: 347px;
+      margin: 50px auto;
+      box-shadow: 2px 2px 3px #999, -2px -2px 3px #999;
+      background-color: #fff;
+    }
+
+    .tip {
+      height: 40px;
+      background-color: #FFF8F0;
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    .log-way {
+      display: flex;
+      width: 100%;
+      height: 54px;
+      border-bottom: 1px solid #F4F4F4;
+      padding: 0 20px;
+    }
+
+    .byScan {
+      flex: 1;
+      border: none;
+      background-color: #fff;
+      color: #666;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .byAccount {
+      flex: 1;
+      border: none;
+      background-color: #fff;
+      color: #E4393C;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .byScan:hover,
+    .byAccount:hover {
+      color: #E4393C;
+      font-weight: bold;
+    }
+
+    .sep {
+      color: #F4F4F4;
+      font-size: 18px;
+      line-height: 54px;
+    }
+
+    .notify {
+      padding: 0 20px;
+    }
+
+    .notify>p {
+      padding: 10px 0;
+      margin: 10px 0;
+      background-color: #fcbdbe;
+      color: #E4393C;
+      font-size: 12px;
+      text-align: center;
+      visibility: hidden;
+    }
+
+    .inputs {
+      padding: 0 20px;
+    }
+
+    .uname,
+    .upassword {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .uname>label,
+    .upassword>label {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 1px solid #BDBDBD;
+    }
+
+    .uname>label {
+      background: url('img/用户.svg') no-repeat center;
+      background-size: 80% 80%;
+      background-color: #F4F4F4;
+    }
+
+    .upassword>label {
+      background: url('img/密码.svg') no-repeat center;
+      background-size: 80% 80%;
+      background-color: #F4F4F4;
+    }
+
+    .inputs input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #BDBDBD;
+      padding-left: 50px;
+      color: #767676;
+      font-size: 16px;
+      line-height: 40px;
+    }
+
+    .inputs input:focus,
+    button:focus {
+      outline: none;
+    }
+
+    .inputs .close {
+      position: absolute;
+      top: 0;
+      right: 0px;
+      width: 30px;
+      height: 40px;
+      border: 1px solid #BDBDBD;
+      border-left: none;
+      background: url('img/删除.svg') no-repeat center;
+      background-size: 50% 50%;
+      background-color: #fff;
+      visibility: hidden;
+    }
+
+    .forget-pwd {
+      padding: 0 20px;
+    }
+
+    .forget-pwd a {
+      float: right;
+      color: #666;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .forget-pwd a:hover {
+      color: red;
+      text-decoration: underline red;
+    }
+
+    .log-btn {
+      width: 100%;
+      padding: 40px 20px;
+    }
+
+    .log-btn>button {
+      width: 100%;
+      height: 36px;
+      background-color: #E4393C;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      letter-spacing: 10px;
+      text-align: center;
+      line-height: 36px;
+    }
+    .qrcode-wrapper {
+      width: 100%;
+      padding: 20px 5px;
+    }
+    .log-qrcode {
+      display: flex;
+      justify-content: space-around;
+    }
+    .code-img, .phone-img {
+      display: block;
+      width: 150px;
+      height: 150px;
+    }
+    .phone-img {
+      display: block;
+      transition: .2s ease-in;
+    }
+    .qrcode-wrapper p {
+      padding: 10px 0;
+      color: #666;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <div class="tip">京东不会以任何理由要求您转账汇款，谨防诈骗</div>
+    <div class="log-way">
+      <button class="byScan">扫码登录</button>
+      <span class="sep">|</span>
+      <button class="byAccount">账户登录</button>
+    </div>
+    <div class="log-form">
+      <div class="notify">
+        <p>输入密码</p>
+      </div>
+      <div class="inputs">
+        <div class="uname">
+          <label for="account"></label>
+          <input type="text" name="account" id="account" placeholder="邮箱/用户名/登录手机">
+          <button class="close"></button>
+        </div>
+        <div class="upassword">
+          <label for="password"></label>
+          <input type="password" name="password" id="password" placeholder="密码">
+          <button class="close"></button>
+        </div>
+      </div>
+      <div class="forget-pwd">
+        <a href="#">忘记密码</a>
+      </div>
+      <div class="log-btn">
+        <button>登录</button>
+      </div>
+    </div>
+    <div class="qrcode-wrapper">
+      <div class="log-qrcode">
+        <img src="img/qrcode.png" class='code-img' alt="">
+        <img src="img/phone.png" class='phone-img' alt="">
+      </div>
+      <p>打开<span style="color:red;">手机京东</span> 扫描二维码</p>
+    </div>
+  </div>
+  <script>
+    const account = document.getElementById('account');
+    const password = document.getElementById('password');
+    const labels = document.getElementsByTagName('label');
+    const closeBtns = document.getElementsByClassName('close');
+    const log = document.querySelector('.log-btn>button');
+    const logTips = document.querySelector('.notify>p');
+    const byScan = document.querySelector('.byScan');
+    const byAccount = document.querySelector('.byAccount');
+    const logForm = document.querySelector('.log-form');
+    const logQrcode = document.querySelector('.qrcode-wrapper');
+    const qrcodeImg = document.querySelector('.code-img');
+    const phoneImg = document.querySelector('.phone-img');
+    account.onfocus = function () {
+      if (logTips.style.visibility == 'visible')
+        return;
+      labels[0].style.backgroundColor = '#ccc';
+    };
+    account.onblur = function () {
+      if (logTips.style.visibility == 'visible')
+        return;
+      labels[0].style.backgroundColor = '#F4F4F4';
+    };
+    password.onfocus = function () {
+      if (logTips.style.visibility == 'visible')
+        return;
+      labels[1].style.backgroundColor = '#ccc';
+    }
+    password.onblur = function () {
+      if (logTips.style.visibility == 'visible')
+        return;
+      labels[1].style.backgroundColor = '#F4F4F4';
+    }
+    log.addEventListener('click', function () {
+      let uaccount = account.value;
+      let upwd = password.value;
+      if (uaccount == '') {
+        logTips.innerHTML = '请先输入您的账号';
+        logTips.style.visibility = 'visible';
+        account.focus();
+        labels[0].style.backgroundColor = '#E4393C';
+        labels[0].style.borderColor = '#E4393C';
+        account.style.borderColor = '#E4393C';
+      } else if (upwd == '') {
+        logTips.innerHTML = '请先输入您的密码';
+        logTips.style.visibility = 'visible';
+        password.focus();
+        labels[1].style.backgroundColor = '#E4393C';
+        labels[1].style.borderColor = '#E4393C';
+        password.style.borderColor = '#E4393C';
+      } else {
+        logTips.style.visibility = 'hidden';
+        alert('success')
+      }
+    })
+    byScan.addEventListener('click', function() {
+      byAccount.style.color = '#666';
+      byAccount.style.fontWeight = 'normal';
+      byScan.style.color = '#E6393C';
+      byScan.style.fontWeight = 'bold';
+      logForm.style.display = 'none';
+      logQrcode.style.display = 'block';
+    });
+    byAccount.addEventListener('click', function() {
+      byScan.style.color = '#666';
+      byScan.style.fontWeight = 'normal';
+      byAccount.style.color = '#E6393C';
+      byAccount.style.fontWeight = 'bold';
+      logQrcode.style.display = 'none';
+      logForm.style.display = 'block';
+    });
+    qrcodeImg.onmouseover = function() {
+       phoneImg.style.transition = '0.2s'
+        phoneImg.style.display = 'block';
+    };
+    qrcodeImg.onmouseout = function() {
+      phoneImg.style.display = 'none';
+       phoneImg.style.transition = '0.2s'
+    };
+  </script>
+</body>
+
+</html>

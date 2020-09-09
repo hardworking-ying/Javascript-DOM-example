@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取事件对象兼容性净解决方案</title>
+  <!-- 
+    btn.onclick = function(e) {...}
+
+    e || window.event（ie6-8使用）
+    e.target || e.srcElement(ie6-8 使用)  获取触发事件的对象
+    e.currentTarget （ie678不认识）        获取绑定事件的对象，类似于this
+   -->
+</head>
+<body>
+  <button id="btn">按钮</button>
+
+  <script>
+    let btn = document.getElementById("btn");
+    btn.onclick = function(e) {
+      var event = e || window.event;
+      var target = e.target || e.srcElement;
+      var thisObj = e.currentTarget
+      console.log(event);
+      console.log(target);
+      console.log(thisObj);
+    }
+  </script>
+</body>
+</html>

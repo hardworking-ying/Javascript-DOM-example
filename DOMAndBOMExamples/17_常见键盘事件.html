@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常见键盘事件</title>
+  <!--  
+    keyCode 返回键的ASCII码
+
+    keyup     键盘按键被松开   keyCode不区分字母大小写，a和A得到的都是65
+    keydown   键盘按键被按下   keyCode不区分字母大小写，a和A得到的都是65
+    keypress  键盘按键被按下   对功能键如 ctrl、shift、alt等无效  
+                              keyCode区分字母大小写
+
+    执行顺序： keydown  --  keypress --  keyup
+   -->
+</head>
+<body>
+  <script>
+    document.addEventListener('keyup', function(e) {
+      // keyup 和 keydown 不区分字母大小写，a和A得到的都是65
+      console.log('up : ' + e.keyCode);
+      console.log("你松开了键盘");
+    })
+
+    document.addEventListener('keydown', function() {
+      console.log("你按下了键盘down");
+    })
+
+    document.addEventListener('keypress', function(e) {
+      console.log("你按下了键盘press： " + e.keyCode);
+    })
+  </script>
+</body>
+</html>

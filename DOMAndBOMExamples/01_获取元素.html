@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取元素的几种方式</title>
+  <!-- 
+    1. document.getElementById( id )
+    2. document/ele.getElementsByTagName( tag )
+    以下是h5新增方法：
+    3. document/ele.getElementsByClassName( class )
+    4. document/ele.querySelector( selector )
+    5. document/ele.querySelectorAll( selector )
+
+   -->
+</head>
+<body>
+  <div id="container">
+    <h2>Hello DOM！</h2>
+    <div id='main' class="content">
+      <p>DOM：文档对象模型</p>
+      <p>BOM: 浏览器对象模型</p>
+      <ul>
+        <li id='first' class="li-item">HTML</li>
+        <li class="li-item">CSS</li>
+        <li class="li-item">JS</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    console.log(document.documentElement);
+    
+  </script>
+</body>
+</html>

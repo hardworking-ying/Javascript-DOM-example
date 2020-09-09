@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态生成表格</title>
+  <style>
+    .wrapper {
+      width: 400px;
+      margin: 100px auto;
+      background-color: bisque;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th {
+      background-color: #ccc;
+    }
+    th,tr,td {
+      border: 1px solid #aaa;
+    }
+    th,td {
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+    }
+    a {
+      color: #333;
+      text-decoration: none;
+      padding: 5px;
+      background-color: rgb(181, 188, 189);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table id="grade_table">
+      <thead>
+        <th>姓名</th>
+        <th>科目</th>
+        <th>成绩</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  </div>
+  <script>
+    const grades = [
+      {name: "张三", subject: "高等数学", grade: "96"},
+      {name: "李四", subject: "高等数学", grade: "86"},
+      {name: "王五", subject: "高等数学", grade: "100"},
+      {name: "赵柳", subject: "高等数学", grade: "70"},
+    ]
+    /*
+    *   @param infos: an array of objects
+    *   @param table_id: id of target table
+    */
+    function buildTable(infos, table_id) {
+      if(!document.getElementsByTagName || !document.getElementById 
+          || !document.createElement || !document.createTextNode) return;
+      const table = document.getElementById(table_id);
+      const tbody = table.getElementsByTagName("tbody");
+      for(let i=0, len=infos.length; i<len; i++) {
+        let tr = document.createElement("tr");
+        for(let key in infos[i]) {
+          let td = document.createElement("td");
+          let td_txt = document.createTextNode(infos[i][key]);
+          td.appendChild(td_txt);
+          tr.appendChild(td);
+        }
+        let td = document.createElement("td");
+        let a = document.createElement("a");
+        a.setAttribute("href", "javascript:void(0)");
+        let a_txt = document.createTextNode("删除");
+        a.appendChild(a_txt);
+        td.appendChild(a);
+        tr.appendChild(td);
+        tbody[0].appendChild(tr);
+      }
+
+      const as = tbody[0].getElementsByTagName("a");
+      for(let i=0, len=as.length; i<len; i++) {
+        as[i].onclick = function() {
+          tbody[0].removeChild(this.parentNode.parentNode);
+          return false;
+        }
+      }
+    }
+
+    
+    buildTable(grades, "grade_table")
+  </script>
+</body>
+</html>

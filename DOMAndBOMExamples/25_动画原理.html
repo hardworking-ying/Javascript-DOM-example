@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画原理</title>
+  <style>
+    .box {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 200px;
+      height: 200px;
+      background-color: plum;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+
+  <script>
+    /*
+      1.获取元素当前位置
+      2.让元素在当前位置上移动一定距离
+      3.利用定时器不断重复这个操作
+      4.加一个结束定时器的条件
+    */
+
+    /*let box = document.querySelector(".box");
+    let timer = setInterval(function(){
+      if(box.offsetLeft >= 400) {
+        clearInterval(timer);
+      }else {
+        box.style.left = box.offsetLeft + 10 + 'px';
+      }
+    }, 50)*/
+
+    // 封装简单动画函数
+    function animation(obj, target, step=10, interval=500) {
+      // 先清除定时器，避免元素上有多个定时器，影响正常效果
+      clearInterval(obj.timer);
+      // 将定时器添加到对象上，避免多个对象混乱有歧义
+      obj.timer = setInterval(function(){
+        if(obj.offsetLeft >= target) {
+          clearInterval(obj.timer);
+        }else {
+          obj.style.left = obj.offsetLeft + step + 'px';
+        }
+      }, interval)
+    }
+    let box = document.querySelector(".box");
+    animation(box, 500)
+  </script>
+</body>
+</html>

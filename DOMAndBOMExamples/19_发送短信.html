@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发送短信</title>
+</head>
+<body>
+  <input type="text" placeholder="短信验证码">
+  <button>发送</button>
+
+  <script>
+    let count = 60;
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", function(){
+      this.disabled = true;
+      let timer = setInterval(function(){
+        if(count==0) {
+          clearInterval(timer);
+          btn.disabled = false;
+          btn.innerHTML = "发送";
+          count = 60;
+        }else {
+          count--;
+          btn.innerHTML = count + "s后重新发送";
+        }
+      }, 1000) 
+    })
+  </script>
+</body>
+</html>

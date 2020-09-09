@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>删除事件兼容性解决方案</title>
+  <!-- 
+    1. elem.onclick = null
+    2. elem.removeEventListener('click', funcName)  //第三个参数默认是false
+    3. elem.detachEvent('onclick', funcName)
+   -->
+</head>
+<body>
+  <script>
+    function removeEventListener(element, eventName, fn) {
+      if(element.removeEventListener) {
+        element.removeEventListener(eventName, fn);
+      }else if(element.detachEvent) {
+        element.detachEvent('on' + eventName, fn);
+      }else {
+        element['on' + eventName] = null;
+      }
+    }
+  </script>
+</body>
+</html>

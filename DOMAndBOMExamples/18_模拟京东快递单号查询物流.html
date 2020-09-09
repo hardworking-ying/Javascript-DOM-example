@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟京东查询快递单号</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-size: 12px;
+    }
+    input, select {
+      padding: 5px;
+    }
+    form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 200px;
+      padding: 20px;
+      background-color: burlywood;
+    }
+    form p {
+      margin-bottom: 20px;
+    }
+    .deliver_wrap {
+      position: relative;
+    }
+    .deliver_wrap span {
+      display: none;
+      position: absolute;
+      top: -55px;
+      left: 40px;
+
+      width: 250px;
+      height: 30px;
+      line-height: 30px;
+      padding: 5px;
+      font-size: 16px;
+      background-color: #fff;
+    }
+    .deliver_wrap span::before {
+      position: absolute;
+      top: 40px;
+      left: 50px;
+
+      content: "";
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top: 10px solid #fff;
+    }
+  </style>
+</head>
+<body>
+  <form action="#">
+    <p>
+      <label for="company">公司名称：</label>
+      <select name="company" id="company">
+        <option value="jd">京东物流</option>
+        <option value="zt">中通快递</option>
+        <option value="sf">顺丰速递</option>
+        <option value="yd">韵达快递</option>
+      </select>
+    </p>
+    <p class="deliver_wrap">
+      <label for="deliver_id">快递单号：</label>
+      <input id="deliver_id" type="text" placeholder="请输入您的快递单号">
+      <button>搜索</button>
+      <span id="deliver_scale"></span>
+    </p>
+  </form>
+
+  <script>
+    const form = document.querySelector("form");
+    const deliver_input = document.getElementById("deliver_id");
+    const deliver_scale = document.getElementById("deliver_scale");
+    // 这里只能使用 keyup, keydown\keypress在文本框里的特点：事件触发时，文字仍未落入文本框
+    document.addEventListener('keyup', function(e){
+      if(e.keyCode===83) {
+        deliver_input.focus();
+      }
+    })
+    deliver_input.addEventListener("keyup", function(e){
+      if(this.value != "") {
+        deliver_scale.innerText = this.value;
+        deliver_scale.style.display = "block"
+      }else{
+        deliver_scale.style.display = "none";
+      }
+    })
+    deliver_input.addEventListener("focus", function(){
+      if(this.value != "") {
+        deliver_scale.style.display = "block";
+      }
+    })
+    deliver_input.addEventListener("blur", function(){
+      deliver_scale.style.display = "none";
+    })
+  </script>
+</body>
+</html>

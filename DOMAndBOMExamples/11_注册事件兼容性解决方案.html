@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注册事件兼容性解决方案</title>
+  <!-- 
+    1. elem.onclick = function(){...}                      注册事件唯一，重复注册会覆盖
+    2. elem.addEventListener('click', function(){...})     可以为一个事件设置多个侦听器，ie9以上才支持
+    3. elem.attachEvent('onclick', function(){...})        ie9 以前使用
+
+    兼容性处理原则：先照顾大多数浏览器，再处理特殊浏览器
+   -->
+</head>
+<body>
+  <script>
+    // 注册事件兼容性解决方案
+    function addEventListener(element, eventName, fn) {
+      if(element.addEventListener) {
+        element.addEventListener(eventName, fn);  // 第三个参数默认是false
+      }else if(element.attachEvent) {
+        element.attachEvent('on'+eventName, fn);
+      }else{
+        element['on'+eventName] = fn;
+      }
+
+    }
+  </script>
+</body>
+</html>

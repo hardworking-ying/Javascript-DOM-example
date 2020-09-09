@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度换肤</title>
+  <style>
+    body {
+      background-image: url('img/05_1.jpg');
+      background-size: cover; 
+      background-repeat: no-repeat;
+    }
+    .wrapper {
+      margin-top: 200px;
+      text-align: center;
+    }
+    .wrapper .tip {
+      color: white;
+      font-size: 18px;
+      text-align: center;
+      text-shadow: 1px 1px 2px #ccc;
+    }
+    .wrapper img {
+      width: 150px;
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <p class="tip">点击图片，一键换肤</p>
+    <img src="img/05_1.jpg" alt="">
+    <img src="img/05_2.jpg" alt="">
+    <img src="img/05_3.jpg" alt="">
+    <img src="img/05_4.jpg" alt="">
+  </div>
+  <script>
+    const imgs = document.getElementsByTagName('img');
+    const bodyEle = document.body;
+    for(let i=0;i<imgs.length;i++) {
+      imgs[i].addEventListener('click', function(){
+        console.log(i);
+        console.log(bodyEle.style.backgroundImage);
+        bodyEle.style.backgroundImage = "url('img/05_"+(i+1)+".jpg')";
+        console.log(bodyEle.style.backgroundImage);
+ 
+      })
+    }
+  </script>
+</body>
+</html>

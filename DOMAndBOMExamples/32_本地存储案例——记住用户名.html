@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>本地存储</title>
+  <!-- 
+    本地存储：
+      ①数据存储在浏览器
+      ②设置、读取方便，甚至页面刷新不丢失数据
+      ③容量较大
+      ④只能存储字符串，可将对象JSON.stringify()编码后存储
+
+    sessionStorage：容量约 5M,关闭窗口生命周期随之结束
+    localStorage：容量约 20M，永久有效除非手动删除
+
+    setItem(key, value)  存储数据
+    getItem(key)         访问数据
+    removeItem(key)      删除数据
+    clear()              清空数据
+   -->
+</head>
+<body>
+  <div class="storage">
+    <label for="username">用户名：</label>
+    <input type="text" placeholder="请输入你的用户名" id="username">
+    <br>
+    <label for="password">密码：</label>
+    <input type="text" placeholder="请输入6-8位密码" id="password">
+    <br>
+    <input type="checkbox" name="remember" id="remember">
+    <label for="remember">记住用户名</label>
+  </div>
+
+  <script>
+    const uname = document.getElementById("username");
+    const psd = document.getElementById("password");
+    const remember = document.getElementById("remember");
+    if(localStorage.getItem("uname")) {
+      uname.value = localStorage.getItem("uname");
+    }
+
+    remember.addEventListener("change", function(){
+      let state = this.checked;
+      if(this.checked) {
+        localStorage.setItem("uname", uname.value);
+      }else{
+        localStorage.removeItem("uname");
+      }
+    })
+  </script>
+</body>
+</html>

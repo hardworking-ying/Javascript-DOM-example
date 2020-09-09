@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        #wrap{
+            width:400px;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: cornflowerblue;
+            font-size: 14px;
+        }
+        #buttons{
+            border-bottom: 1px solid #aaa;
+        }
+        #buttons button{
+            width: 100px;
+            text-align: center;
+            margin:10px 20px 10px 0px;
+        }
+        #items{
+            width: 400px;
+            height: 500px;
+            background-color: darksalmon;
+        }
+        #items div{
+            position: relative;
+            padding: 10px;
+            border-bottom: 1px dashed #aaa;
+        }
+        #items button{
+            float: right;
+        }
+    </style>
+    <script>
+        function randomColor(){
+            return "rgba(" + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) +",1)";
+        }
+        window.onload = function(){
+            const items = document.getElementById("items");
+            const add_btn = document.getElementById("add");
+            let input = document.getElementsByTagName("input");
+            
+            add_btn.onclick = function(){
+                if(!input[0].value){
+                    alert("输入内容不能为空！");
+                }else{
+                    if(input[0].value.length > 20) {
+                        alert("最多只能输入20个字符！");
+                        return;
+                    }
+                    let newDiv = document.createElement("div");
+                    let txt = document.createTextNode(input[0].value);
+                    let del_btn = document.createElement("button");
+                    let del_txt = document.createTextNode("删除");
+                    let copy_btn = document.createElement("button");
+                    let copy_txt = document.createTextNode("拷贝");
+                    del_btn.onclick = function() {
+                        items.removeChild(this.parentNode);
+                    }
+                    copy_btn.onclick = function() {
+                        let copyDiv = this.parentNode.cloneNode(true);
+                        items.appendChild(copyDiv);
+                    }
+                    del_btn.appendChild(del_txt);
+                    copy_btn.appendChild(copy_txt);
+                    newDiv.appendChild(txt);
+                    newDiv.appendChild(del_btn);
+                    newDiv.appendChild(copy_btn);
+                    newDiv.style.backgroundColor = randomColor();
+                    items.insertBefore(newDiv, items.firstChild);
+                    input[0].value = '';
+                }
+            }
+
+            input[0].onkeydown = function(e){
+                var event = e.event || window.event;
+                var which = event.which || event.keyCode;
+                if(e.ctrlKey && which==13){
+                    add_btn.onclick();
+                } 
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <input name="content" type="text" placeholder="请输入内容" />
+        <div id="buttons">
+            <button id="add">增加</button>
+        </div>
+        <div id="items">
+        </div>
+    </div>
+</body>
+</html>

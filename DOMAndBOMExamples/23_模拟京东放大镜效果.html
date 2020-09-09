@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>放大镜</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .product {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      margin: 10px;
+      border: 1px solid #ccc;
+    }
+    .product img {
+      width: 400px;
+      height: 400px;
+    }
+    .mask {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 300px;
+      height: 300px;
+      background-color: khaki;
+      opacity: .4;
+    }
+    .big {
+      display: none;
+      position: absolute;
+      left: 410px;
+      top: 0;
+      width: 500px;
+      height: 500px;
+      background-color: lightblue;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+    .big img {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+    }
+  </style>
+</head>
+<body>
+  <div class="product">
+    <img src="img/phone_small.png" alt="">
+    <div class="mask"></div>
+    <div class="big"><img src="img/phone_big.jpg" alt=""></div>
+  </div>
+
+  <script>
+    const product = document.querySelector(".product");
+    const mask = document.querySelector(".mask");
+    const big = document.querySelector(".big");
+    const big_img = document.querySelector(".big > img");
+
+    product.addEventListener("mouseover", function(e){
+      mask.style.display = "block";
+      big.style.display = "block";
+    })
+
+    product.addEventListener("mouseout", function(e){
+      mask.style.display = "none";
+      big.style.display = "none";
+    })
+
+    product.addEventListener("mousemove", function(e){
+      // 鼠标在product中的相对位置赋值给mask，
+      //为了让鼠标居中，再减去mask大小的一半，
+      let left = e.pageX - this.offsetLeft - mask.offsetWidth/2;
+      let top = e.pageY - this.offsetTop - mask.offsetHeight/2;
+      //注意不要超出边界
+      let maxLeft = product.offsetWidth - mask.offsetWidth;
+      let maxTop = product.offsetHeight - mask.offsetHeight;
+      if(left < 0) left = 0;
+      if(left > maxLeft) left = maxLeft;
+      if(top < 0) top = 0;
+      if(top > maxTop) top = maxTop;
+      mask.style.left = left + 'px';
+      mask.style.top = top + 'px';
+
+      // 大图片最大移动距离
+      let bigMaxX = big_img.offsetWidth - big.offsetWidth;
+      let bigMaxY = big_img.offsetHeight - big.offsetHeight;
+
+      // 大图片的移动距离 = 遮罩层移动距离 * 大图片最大移动距离 / 遮罩层最大移动距离
+      big_img.style.left = -left * bigMaxX / maxLeft + 'px';
+      big_img.style.top = -top * bigMaxY / maxTop + 'px';
+
+    })
+  </script>
+</body>
+</html>
